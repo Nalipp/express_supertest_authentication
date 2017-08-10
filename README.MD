@@ -1,6 +1,6 @@
 ## Commit descriptions
 
-### commit 1 : mongoose connection and models
+### mongoose connection and models
 
 connect to mongoose
 
@@ -26,9 +26,12 @@ select the following
   response can be set to pretty
 
 
-### commit 2 : set up testing
+### testing setup
 $ npm install --save-dev mocha expect supertest nodemon
 
-create two example tests with supertest expect and mocha
+various routes and testing with supertest expect and mocha
 
 update package.json to watch and run tests with npm run test-watch
+
+
+
