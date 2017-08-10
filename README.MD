@@ -29,9 +29,38 @@ select the following
 ### testing setup
 $ npm install --save-dev mocha expect supertest nodemon
 
-various routes and testing with supertest expect and mocha
-
 update package.json to watch and run tests with npm run test-watch
+
+### preparing for heroku
+
+add to server.js
+
+  const port = process.env.PORT || 3000;
+
+  app.listen(port, () => {
+    console.log(`running on ${port}`); 
+  });
+
+add to package.json with node -v on current maching
+
+  "engines": {
+    "node": "6.9.3"
+  },
+
+heroku also needs to know how to start the app
+
+  "start": "node server/server.js",
+
+#### set up heroku database
+
+$ heroku create
+
+$ heroku addons:create mongolab:sandbox
+
+$ heroku config (gives access to MONGODB_URI)
+
+mongoose.connect(process.env.MONGODB_URI || <dev connection>)
+
 
 
 
