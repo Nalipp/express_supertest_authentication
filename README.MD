@@ -61,6 +61,14 @@ $ heroku config (gives access to MONGODB_URI)
 
 mongoose.connect(process.env.MONGODB_URI || <dev connection>)
 
+$ git push
+
+$ git push heroku master
+
+$ heroku logs
+
+$ heroku open
+
 
 
 
