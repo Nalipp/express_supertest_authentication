@@ -8,11 +8,14 @@ const {Todo} = require('./../models/todo');
 const todos = [
   {
     _id: new ObjectID(),
-    text: 'Go to the store'
+    text: 'Go to the store',
+    completed: false
   }, 
   {
     _id: new ObjectID(),
-    text: 'Walk the dog'
+    text: 'Walk the dog',
+    completed: true,
+    completedAt: 333
   }
 ]
 
@@ -126,6 +129,52 @@ describe('DELETE /todos/:id', () => {
   it('should return 404 when todo is not found', (done) => {
     request(app)
       .delete('/todos/' + '123abc')
+      .expect(404)
+      .end(done);
+  });
+});
+
+describe('PATCH /todos/:id', () => {
+  it('should update the todo text', (done) => {
+    var id = todos[0]._id;
+    request(app)
+      .patch('/todos/' + todos[0]._id)
+      .send({
+        text: 'clean the sink',
+        completed: true
+      })
+      .expect(200)
+      .expect((res) => {
+        expect(res.body.todo.completed).toBe(true);
+        expect(res.body.todo.text).toBe('clean the sink');
+        expect(res.body.todo.completedAt).toBeA('number');
+      }).end(done);
+  });
+
+  it('should clear compltedAt when todo is not completed', (done) => {
+    var id = todos[1]._id;
+    request(app)
+      .patch('/todos/' + todos[0]._id)
+      .send({
+        completed: false
+      })
+      .expect(200)
+      .expect((res) => {
+        expect(res.body.todo.completed).toBe(false);
+        expect(res.body.todo.completedAt).toNotExist();
+      }).end(done);
+  });
+
+  it('should return 404 when todo ObjectId wrong format', (done) => {
+    request(app)
+      .patch('/todos/' + todos[0]._id + '!')
+      .expect(404)
+      .end(done);
+  });
+
+  it('should return 404 when todo is not found', (done) => {
+    request(app)
+      .patch('/todos/' + '123abc')
       .expect(404)
       .end(done);
   });

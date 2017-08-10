@@ -1,37 +1,37 @@
-## Commit descriptions
-
-### mongoose connection and models
-
+### Mongoose connection and models
 connect to mongoose
 
 create users and todos models
 
-mongoose.Promise = global.Promise for enabling promises
+mongoose.Promise = global.Promise -> for enabling promises
 
-create first post to the database with postman
+create first get.post() route
 
-
-in the app.js 
-  create a get.post() route
-
-#### postman
-allows you to post an http request to a post route in app.js
-
+#### Postman
 input a dummy json object that mimicks the object that would be the result of a submitted form
 
 select the following
+
   body
+
   raw
+
   JSON (application/json)
+
   response can be set to pretty
 
+explore environments and collections to automate requests and switch between production and dev envrionments
 
-### testing setup
+### Testing setup
 $ npm install --save-dev mocha expect supertest nodemon
 
 update package.json to watch and run tests with npm run test-watch
 
-### preparing for heroku
+Todo.findByIdAndUpdate example uses lodash to pick values from patch request wich allows you to specify the values that the user is allowed to update.
+
+This example also sets the {new: true} optoin which returns the modified document instead of the original document by default
+
+### Preparing for heroku
 
 add to server.js
 
@@ -51,7 +51,7 @@ heroku also needs to know how to start the app
 
   "start": "node server/server.js",
 
-#### set up heroku database
+#### Set up heroku database
 
 $ heroku create
 
@@ -68,7 +68,5 @@ $ git push heroku master
 $ heroku logs
 
 $ heroku open
-
-
 
 
