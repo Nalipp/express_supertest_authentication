@@ -35,21 +35,27 @@ This example also sets the {new: true} optoin which returns the modified documen
 
 add to server.js
 
+```
   const port = process.env.PORT || 3000;
 
   app.listen(port, () => {
     console.log(`running on ${port}`); 
   });
+```
 
 add to package.json with node -v on current maching
 
+```
   "engines": {
     "node": "6.9.3"
   },
+```
 
 heroku also needs to know how to start the app
 
+```
   "start": "node server/server.js",
+```
 
 #### Set up heroku database
 
@@ -59,7 +65,9 @@ $ heroku addons:create mongolab:sandbox
 
 $ heroku config (gives access to MONGODB_URI)
 
-mongoose.connect(process.env.MONGODB_URI || <dev connection>)
+```
+  mongoose.connect(process.env.MONGODB_URI || <dev connection>)
+```
 
 $ git push
 
@@ -72,12 +80,15 @@ $ heroku open
 
 #### create Config file
 
-// package.json
+add to package.json
 
+```
   "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/*.tests.js",
+```
 
-// config/config
+add to config/config
 
+```
   var env = process.env.NODE_ENV || 'development';
 
   if (env === 'development) {
@@ -87,3 +98,4 @@ $ heroku open
     process.env.PORT = 3000;
     process.env.NODE_ENV = 'mongodb://localhost:27017/TodoAppTest';
   }
+```
