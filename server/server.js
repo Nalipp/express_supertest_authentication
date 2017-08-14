@@ -2,6 +2,7 @@ require('./config/config');
 
 const express = require('express');
 const _ = require('lodash');
+const bcrypt = require('bcryptjs');
 const bodyParser = require('body-parser');
 const {ObjectID} = require('mongodb');
 
