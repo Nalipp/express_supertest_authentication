@@ -70,3 +70,20 @@ $ heroku logs
 $ heroku open
 
 
+#### create Config file
+
+// package.json
+
+  "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/*.tests.js",
+
+// config/config
+
+  var env = process.env.NODE_ENV || 'development';
+
+  if (env === 'development) {
+    process.env.PORT = 3000;
+    process.env.NODE_ENV = 'mongodb://localhost:27017/TodoApp';
+  } else if (env === 'test') {
+    process.env.PORT = 3000;
+    process.env.NODE_ENV = 'mongodb://localhost:27017/TodoAppTest';
+  }
